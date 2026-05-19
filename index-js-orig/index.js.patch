@@ -161,14 +161,14 @@
          }
          ), [H, R, O, o, Q, J, c])
            , X = (0,
--        t.useCallback)(( ({vehicle: t, trip: l, route: c, variant: u, ts: s, deviation: n, path: o}) => {
+-        t.useCallback)(( ({vehicle: t, trip: l, route: c, variant: u, ts: n, deviation: s, path: o}) => {
 +        t.useCallback)(( ({vehicle: t, trip: l, route: c, variant: u, ts: n, deviation: s, run: r, path: o}) => {
              p.current[t.key].tripId = null == l ? void 0 : l.key,
              p.current[t.key].routeId = null == c ? void 0 : c.key,
              p.current[t.key].variantId = null == u ? void 0 : u.key,
 +            p.current[t.key].runId = null == u ? void 0 : r.key,
-             p.current[t.key].updatedAt = s,
-             p.current[t.key].deviation = n,
+             p.current[t.key].updatedAt = n,
+             p.current[t.key].deviation = s,
              null != l && l.key && null != c && c.key ? (p.current[t.key].busMarkerData = e.current[c.key],
 @@ -362222,7 +362306,7 @@
          var o = Math.asin(1 / (a = Math.max(1, a))) * (c /= n);
