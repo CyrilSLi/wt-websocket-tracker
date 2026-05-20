@@ -1,5 +1,5 @@
 --- index-js-orig/index-orig.js	2026-05-19 15:35:28.235747010 -0500
-+++ index-js-orig/index-patched.js	2026-05-20 01:56:20.892832022 -0500
++++ index-js-orig/index-patched.js	2026-05-20 09:37:01.059431395 -0500
 @@ -87240,10 +87240,63 @@
                                  d.request_content_type = m.get("Content-Type"),
                                  t.autoInstrument.networkRequestHeaders && (d.request_headers = t.fetchHeaders(m, t.autoInstrument.networkRequestHeaders))
@@ -65,6 +65,24 @@
                                  d.end_time_ms = n.now(),
                                  d.status_code = e.status,
                                  d.response_content_type = e.headers.get("Content-Type");
+@@ -161808,7 +161861,7 @@
+         u.default)().add(15, "minutes");
+         d.locale(o),
+         d.isBefore(f) ? c.visual = (0,
+-        l.t)("common:time.past") : d.isBefore((0,
++        l.t)(d.format(s.DATE_TIME_FORMATS[o][a].time)) : d.isBefore((0,
+         u.default)()) ? c.visual = (0,
+         l.t)("common:time.due") : n && d.isBefore(p) ? c.visual = d.toNow(!0) : c.visual = d.format(s.DATE_TIME_FORMATS[o][a].time);
+         let y = new RegExp((0,
+@@ -161816,7 +161869,7 @@
+           , b = new RegExp((0,
+         l.t)("common:time.due"),"gi")
+           , v = new RegExp((0,
+-        l.t)("common:time.past"),"gi");
++        l.t)(d.format(s.DATE_TIME_FORMATS[o][a].time)),"gi");
+         return c.visual.match(y) ? c.a11y = (0,
+         l.t)("stops:schedules.departs_in", {
+             time: c.visual
 @@ -240478,14 +240531,14 @@
              const c = "\n      background-color: ".concat(n || "#ffffff", ";\n      border-color: ").concat(A || "#d9d9d9", ";\n      border-width: 1px;\n      border-style: solid;\n      border-radius: 4px;\n    ");
              return "\n      <div style=\"font-weight: 700;\n                  font-family: 'Source Sans 3', 'sans-serif';\n                  text-align: center;\n                  color: ".concat(e || "#000000", ";\n                  padding: ").concat(o ? 0 : 5, "px;\n                  font-size: 15px;\n                  min-width: ").concat(o ? 15 : 18, "px;\n                  min-height: ").concat(o ? 15 : 18, "px;\n                  line-height: ").concat(o ? 16 : 18, "px;\n                  ").concat(o ? "" : c, '"\n      >\n        ').concat(t, "\n      </div>\n    ")
