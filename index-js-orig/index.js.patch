@@ -1,5 +1,5 @@
 --- index-js-orig/index-orig.js	2026-05-19 15:35:28.235747010 -0500
-+++ index-js-orig/index-patched.js	2026-05-20 01:47:46.517024185 -0500
++++ index-js-orig/index-patched.js	2026-05-20 01:56:20.892832022 -0500
 @@ -87240,10 +87240,63 @@
                                  d.request_content_type = m.get("Content-Type"),
                                  t.autoInstrument.networkRequestHeaders && (d.request_headers = t.fetchHeaders(m, t.autoInstrument.networkRequestHeaders))
@@ -192,7 +192,7 @@
                  M = "".concat(M, " (").concat(t, ")")
              }
          }
-+        const tripScheduleLinkStyle = "display:inline-block; font-size: 24px; font-family: sans-serif; padding: 6px; margin: 6px; font-weight: bold; color: blue; background-color: white; border-radius: 6px;";
++        const tripScheduleLinkStyle = "display:inline-block; font-size: 20px; font-family: sans-serif; padding: 5px; margin: 5px; font-weight: bold; color: blue; background-color: white; border-radius: 5px;";
 +        const tripScheduleLink = (tripId, linkName) => (`<a style="${tripScheduleLinkStyle}" href="https://winnipegtransit.com/stops/trip/${tripId}/schedule?originStopId=${C.stopId}&date=${C.scheduledTime.split("T")[0]}&time=${C.scheduledTime.split("T")[1].slice(0, 5)}" target="_self">${linkName}</a>`);
          return (0,
          y.jsxs)(n.default, {
