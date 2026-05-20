@@ -1,5 +1,5 @@
 --- index-js-orig/index-orig.js	2026-05-19 15:35:28.235747010 -0500
-+++ index-js-orig/index-patched.js	2026-05-19 15:35:43.603011674 -0500
++++ index-js-orig/index-patched.js	2026-05-19 23:03:40.847016659 -0500
 @@ -87240,10 +87240,63 @@
                                  d.request_content_type = m.get("Content-Type"),
                                  t.autoInstrument.networkRequestHeaders && (d.request_headers = t.fetchHeaders(m, t.autoInstrument.networkRequestHeaders))
@@ -96,7 +96,7 @@
              )(), "\n            \n            \x3c!--  Bus features section  --\x3e\n            ").concat(this._busMarkerFeaturesHTMLString(Object.assign({}, w, {
                  fillColor: o.textPrimary
 -            })), '\n          </div>\n          \n          \x3c!--  Last updated section  --\x3e\n          <div style="display: flex; flex-direction: row; flex: 1; flex-wrap: nowrap; align-items: center; justify-content: flex-start; margin-top: 8px;">\n            ').concat(this._busMarkerLastUpdatedHTMLString({
-+            })), '\n          </div>\n          \n          \x3c!--  Last updated section  --\x3e\n          <div style="display: flex; flex-direction: column; flex: 1; flex-wrap: nowrap; align-items: center; justify-content: flex-start;">\n            ').concat(`<a href="https://cyrilsli.github.io/wtlive_run_redirect.html?run=${r}" target="_blank">Show ${r} on WTLive</a>`, this._busMarkerLastUpdatedHTMLString({
++            })), '\n          </div>\n          \n          \x3c!--  Last updated section  --\x3e\n          <div style="display: flex; flex-direction: column; flex: 1; flex-wrap: nowrap; align-items: center; justify-content: flex-start;">\n            ').concat(`<a href="https://cyrilsli.github.io/wtlive_run_redirect.html?run=${r}" target="_blank">Show ${r} on WTLive</a>` + (location.pathname.includes("onthego") ? "" : `<a href="https://winnipegtransit.com/onthego/live?busId=${t}" target="_blank">Open On the Go</a>`), this._busMarkerLastUpdatedHTMLString({
                  lastUpdated: s,
                  locale: E,
                  hourStyle: f,
