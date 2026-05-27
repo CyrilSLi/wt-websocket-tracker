@@ -1,6 +1,6 @@
 --- index-js-orig/index-orig.js	2026-05-26 10:45:35.147805269 -0500
-+++ index-js-orig/index-patched.js	2026-05-26 23:50:44.769359739 -0500
-@@ -87240,10 +87240,91 @@
++++ index-js-orig/index-patched.js	2026-05-27 09:58:03.518813127 -0500
+@@ -87240,10 +87240,83 @@
                                  d.request_content_type = m.get("Content-Type"),
                                  t.autoInstrument.networkRequestHeaders && (d.request_headers = t.fetchHeaders(m, t.autoInstrument.networkRequestHeaders))
                              }
@@ -54,23 +54,15 @@
 +                                    status: 200,
 +                                    headers: { 'Content-Type': 'application/json' }
 +                                }));
-+                            } else if (r.url.startsWith("https://winnipegtransit.com/api/v2/trips/schedule")) {
++                            } else if (r.url?.startsWith("https://winnipegtransit.com/api/v2/trips/schedule")) {
 +                                const params = new URL(r.url).searchParams;
 +                                if (params.get("trip_id") in (window.customTrackerPatchedTrips ?? {})) {
 +                                    fetchResult = Promise.resolve(new Response(JSON.stringify({
 +                                        "id": params.get("trip_id"),
 +                                        "route": {
 +                                            "label": "On-Request",
-+                                            "badgeLabel": window.customTrackerPatchedTrips[params.get("trip_id")],
-+                                            "badgeStyle": {
-+                                                "classNames": [
-+                                                    "badge-label",
-+                                                    "on_request"
-+                                                ],
-+                                                "backgroundColor": "#fff0d8",
-+                                                "borderColor": "#052465",
-+                                                "color": "#052465"
-+                                            },
++                                            "badgeLabel": window.customTrackerPatchedTrips[params.get("trip_id")].routeId,
++                                            "badgeStyle": window.customTrackerPatchedTrips[params.get("trip_id")].badgeStyle
 +                                        },
 +                                        "variant": {
 +                                            "name": "&nbsp;"
@@ -93,7 +85,7 @@
                                  d.end_time_ms = n.now(),
                                  d.status_code = e.status,
                                  d.response_content_type = e.headers.get("Content-Type");
-@@ -161808,7 +161889,7 @@
+@@ -161808,7 +161881,7 @@
          u.default)().add(15, "minutes");
          d.locale(o),
          d.isBefore(f) ? c.visual = (0,
@@ -102,7 +94,7 @@
          u.default)()) ? c.visual = (0,
          l.t)("common:time.due") : n && d.isBefore(p) ? c.visual = d.toNow(!0) : c.visual = d.format(s.DATE_TIME_FORMATS[o][a].time);
          let y = new RegExp((0,
-@@ -161816,7 +161897,7 @@
+@@ -161816,7 +161889,7 @@
            , b = new RegExp((0,
          l.t)("common:time.due"),"gi")
            , v = new RegExp((0,
@@ -111,7 +103,7 @@
          return c.visual.match(y) ? c.a11y = (0,
          l.t)("stops:schedules.departs_in", {
              time: c.visual
-@@ -240478,14 +240559,14 @@
+@@ -240478,14 +240551,14 @@
              const c = "\n      background-color: ".concat(n || "#ffffff", ";\n      border-color: ").concat(A || "#d9d9d9", ";\n      border-width: 1px;\n      border-style: solid;\n      border-radius: 4px;\n    ");
              return "\n      <div style=\"font-weight: 700;\n                  font-family: 'Source Sans 3', 'sans-serif';\n                  text-align: center;\n                  color: ".concat(e || "#000000", ";\n                  padding: ").concat(o ? 0 : 5, "px;\n                  font-size: 15px;\n                  min-width: ").concat(o ? 15 : 18, "px;\n                  min-height: ").concat(o ? 15 : 18, "px;\n                  line-height: ").concat(o ? 16 : 18, "px;\n                  ").concat(o ? "" : c, '"\n      >\n        ').concat(t, "\n      </div>\n    ")
          }
@@ -128,7 +120,7 @@
                  backgroundColor: p.badgeStyle.backgroundColor,
                  borderColor: p.badgeStyle.color,
                  color: p.badgeStyle.color,
-@@ -240517,7 +240598,7 @@
+@@ -240517,7 +240590,7 @@
                  markerHTML: f
              }
          }
@@ -137,7 +129,7 @@
              const U = "box-shadow: 1px 1px 5px ".concat(o.busMarkerShadow, ";");
              let v = !!C && C.tripId !== A;
              const S = (t, n=!1) => "\n        <div style=\"\n          bottom: 1px;\n          left: 1px;\n          position: absolute;\n          font-size: 13px;\n          font-weight: 700;\n          font-family: 'Source Sans 3', 'sans-serif';\n          color: ".concat(B.badgeStyle.color, ";\n          background: ").concat(B.badgeStyle.backgroundColor, ";\n          border-radius: 24px;\n          padding: 9px;\n          z-index: ").concat(t, ";\n          ").concat(n ? U : "", '; \n          "\n        >\n          <div style="display: flex; flex-direction: row; flex: 0; margin: auto; padding: 0; font-size: 13px;">\n            ').concat(this._busMarkerSVG(B.badgeStyle.color), "\n          </div>\n        </div>\n      ")
-@@ -240536,7 +240617,7 @@
+@@ -240536,7 +240609,7 @@
              }
              )(), "\n            \n            \x3c!--  Bus features section  --\x3e\n            ").concat(this._busMarkerFeaturesHTMLString(Object.assign({}, w, {
                  fillColor: o.textPrimary
@@ -146,7 +138,7 @@
                  lastUpdated: s,
                  locale: E,
                  hourStyle: f,
-@@ -245650,12 +245731,17 @@
+@@ -245650,12 +245723,20 @@
                      busId: s,
                      tripId: i.tripId,
                      routeId: i.routeId,
@@ -159,12 +151,15 @@
                  };
 +                if (i.busMarkerData.type === "dart") {
 +                    window.customTrackerPatchedTrips ??= {};
-+                    window.customTrackerPatchedTrips[i.tripId] = i.routeId;
++                    window.customTrackerPatchedTrips[i.tripId] = {
++                        routeId: i.routeId,
++                        badgeStyle: i.busMarkerData.badgeStyle
++                    };
 +                }
                  Pe(s, i, l),
                  c = s === ee ? Te(i, l) : h.MarkersService.createBusMarker(l),
                  e.push(c)
-@@ -245883,13 +245969,54 @@
+@@ -245883,13 +245964,54 @@
          l.useMemo)(( () => !o || h), [o, h]);
          let D = (0,
          l.useMemo)(( () => (0,
@@ -225,7 +220,7 @@
          const w = (0,
          l.useCallback)(( ({data: t}) => {
              const {data: s, error: u} = t || {};
-@@ -246091,10 +246218,11 @@
+@@ -246091,10 +246213,11 @@
          }
          ), [H, R, O, o, Q, J, c])
            , X = (0,
@@ -238,7 +233,7 @@
              p.current[t.key].updatedAt = n,
              p.current[t.key].deviation = s,
              null != l && l.key && null != c && c.key ? (p.current[t.key].busMarkerData = e.current[c.key],
-@@ -248963,7 +249091,7 @@
+@@ -248963,7 +249086,7 @@
          (0,
          s.useEffect)(( () => {
              const {isLoading: e, isError: t, isFetching: n, isSuccess: o, data: i, error: s} = qe;
@@ -247,7 +242,7 @@
              Te(i.nextTripId),
              U.current = U.current + 1,
              we(!0))
-@@ -362284,7 +362412,7 @@
+@@ -362284,7 +362407,7 @@
          var o = Math.asin(1 / (a = Math.max(1, a))) * (c /= n);
          function s(n) {
              return a * (0,
@@ -256,7 +251,7 @@
          }
          return s.amplitude = function(t) {
              return u(t, c * n)
-@@ -415108,7 +415236,7 @@
+@@ -415108,7 +415231,7 @@
                      children: e
                  })
              }
@@ -265,7 +260,7 @@
                  var de, ue;
                  let t;
                  q.length > 0 && (t = q[q.length - 1]);
-@@ -415357,10 +415485,16 @@
+@@ -415357,10 +415480,16 @@
                  M = "".concat(M, " (").concat(t, ")")
              }
          }
