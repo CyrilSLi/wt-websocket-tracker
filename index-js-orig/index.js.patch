@@ -1,5 +1,5 @@
 --- index-js-orig/index-orig.js	2026-05-28 21:15:06.139573229 -0500
-+++ index-js-orig/index-patched.js	2026-05-28 21:11:10.890220832 -0500
++++ index-js-orig/index-patched.js	2026-05-28 21:20:52.577677182 -0500
 @@ -87279,10 +87279,83 @@
                                  d.request_content_type = m.get("Content-Type"),
                                  t.autoInstrument.networkRequestHeaders && (d.request_headers = t.fetchHeaders(m, t.autoInstrument.networkRequestHeaders))
@@ -229,7 +229,7 @@
              y.current[e.key].tripId = null == t ? void 0 : t.key,
              y.current[e.key].routeId = null == l ? void 0 : l.key,
              y.current[e.key].variantId = null == u ? void 0 : u.key,
-+            y.current[e.key].runId = null == u ? void 0 : u.key,
++            y.current[e.key].runId = null == r ? void 0 : r.key,
              y.current[e.key].updatedAt = n,
              y.current[e.key].deviation = s,
              null != t && t.key && null != l && l.key ? (y.current[e.key].busMarkerData = c.current[l.key],
