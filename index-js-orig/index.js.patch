@@ -1,6 +1,6 @@
 --- index-js-orig/index-orig.js	2026-05-29 00:11:44.840338406 -0500
-+++ index-js-orig/index-patched.js	2026-06-08 21:58:52.454392021 -0500
-@@ -1,3 +1,35 @@
++++ index-js-orig/index-patched.js	2026-06-13 23:15:10.556098159 -0500
+@@ -1,3 +1,37 @@
 +window.customTrackerSidebarButtonStyle = "display:inline-block; font-size: 20px; font-family: sans-serif; padding: 5px; margin: 5px; font-weight: bold; color: blue; background-color: white; border-radius: 5px;";
 +function calculateCustomStopSchedule(orig) {
 +    const params = new URLSearchParams(window.location.search);
@@ -33,10 +33,12 @@
 +        return ` (${timePad(timeDiff / 3600)}:${timePad((timeDiff % 3600) / 60)}:${timePad(timeDiff % 60)} ${estimatedTime >= scheduledTime ? "late" : "early"})`;
 +    }
 +}
++// End of custom global objects
++
  var __BUNDLE_START_TIME__ = globalThis.nativePerformanceNow ? nativePerformanceNow() : Date.now()
    , __DEV__ = false
    , process = globalThis.process || {}
-@@ -87279,10 +87311,83 @@
+@@ -87279,10 +87313,83 @@
                                  d.request_content_type = m.get("Content-Type"),
                                  t.autoInstrument.networkRequestHeaders && (d.request_headers = t.fetchHeaders(m, t.autoInstrument.networkRequestHeaders))
                              }
@@ -121,7 +123,7 @@
                                  d.end_time_ms = n.now(),
                                  d.status_code = e.status,
                                  d.response_content_type = e.headers.get("Content-Type");
-@@ -161741,7 +161846,7 @@
+@@ -161741,7 +161848,7 @@
          u.default)().add(15, "minutes");
          d.locale(o),
          d.isBefore(f) ? c.visual = (0,
@@ -130,7 +132,7 @@
          u.default)()) ? c.visual = (0,
          l.t)("common:time.due") : n && d.isBefore(p) ? c.visual = d.toNow(!0) : c.visual = d.format(s.DATE_TIME_FORMATS[o][a].time);
          let y = new RegExp((0,
-@@ -161749,7 +161854,7 @@
+@@ -161749,7 +161856,7 @@
            , b = new RegExp((0,
          l.t)("common:time.due"),"gi")
            , v = new RegExp((0,
@@ -139,7 +141,7 @@
          return c.visual.match(y) ? c.a11y = (0,
          l.t)("stops:schedules.departs_in", {
              time: c.visual
-@@ -240412,14 +240517,14 @@
+@@ -240412,14 +240519,14 @@
              const c = "\n      background-color: ".concat(n || "#ffffff", ";\n      border-color: ").concat(A || "#d9d9d9", ";\n      border-width: 1px;\n      border-style: solid;\n      border-radius: 4px;\n    ");
              return "\n      <div style=\"font-weight: 700;\n                  font-family: 'Source Sans 3', 'sans-serif';\n                  text-align: center;\n                  color: ".concat(e || "#000000", ";\n                  padding: ").concat(o ? 0 : 5, "px;\n                  font-size: 15px;\n                  min-width: ").concat(o ? 15 : 18, "px;\n                  min-height: ").concat(o ? 15 : 18, "px;\n                  line-height: ").concat(o ? 16 : 18, "px;\n                  ").concat(o ? "" : c, '"\n      >\n        ').concat(t, "\n      </div>\n    ")
          }
@@ -156,7 +158,7 @@
                  backgroundColor: p.badgeStyle.backgroundColor,
                  borderColor: p.badgeStyle.color,
                  color: p.badgeStyle.color,
-@@ -240451,11 +240556,11 @@
+@@ -240451,11 +240558,11 @@
                  markerHTML: f
              }
          }
@@ -170,7 +172,7 @@
                  route: u,
                  variant: x
              }) : '\n        <div style="font-size: 13px; font-weight: bold; margin: 0 auto 0 auto; text-align: center;">\n          '.concat((0,
-@@ -240470,7 +240575,7 @@
+@@ -240470,7 +240577,7 @@
              }
              )(), "\n            \n            \x3c!--  Bus features section  --\x3e\n            ").concat(this._busMarkerFeaturesHTMLString(Object.assign({}, w, {
                  fillColor: o.textPrimary
@@ -179,7 +181,7 @@
                  lastUpdated: s,
                  locale: E,
                  hourStyle: f,
-@@ -240508,10 +240613,10 @@
+@@ -240508,10 +240615,10 @@
              o += "bus-".concat(t),
              o
          }
@@ -192,7 +194,7 @@
          }
          static _busMarkerRouteHTMLString({route: t, variant: n}) {
              return '\n      <div>\n        <div>\n          <div style="display: flex; flex-direction: row; flex: 1; flex-wrap: wrap; justify-content: center">\n            <div style="display: flex; flex-direction: row; flex: 0; margin: 0 8px 0 0; padding: 0; max-height: 18px;">\n              '.concat(this.createRouteMarkerIcon({
-@@ -244367,7 +244472,7 @@
+@@ -244367,7 +244474,7 @@
          null != o && (b.push(o),
          _.live = o),
          null != p && (b.push(p),
@@ -201,7 +203,7 @@
          (0,
          t.apiRequest)("".concat(c, "/schedule?").concat((0,
          t.buildQueryUrl)(_)), {}, b)
-@@ -245587,7 +245692,7 @@
+@@ -245587,7 +245694,7 @@
              return !e.inService && t.expectedBus ? (t.busFeatures = t.expectedBus.busFeatures || {},
              t.locale = L,
              s = n.MarkersService.createSelectedBusMarker(t)) : v ? e.tripId !== v.id ? (s = n.MarkersService.createBusMarker(t),
@@ -210,7 +212,7 @@
              t.variant = v.variant,
              t.busFeatures = (null == v ? void 0 : v.busFeatures) || {},
              t.locale = L,
-@@ -245638,12 +245743,20 @@
+@@ -245638,17 +245745,40 @@
                      busId: s,
                      tripId: c.tripId,
                      routeId: c.routeId,
@@ -231,7 +233,28 @@
                  U(s, c, l),
                  u = s === y ? R(c, l) : n.MarkersService.createBusMarker(l),
                  e.push(u)
-@@ -245707,13 +245820,54 @@
+             }
+-            ))
++            ));
++            if (!document.body.contains(window.customTrackerHeading)) {
++                window.customTrackerHeading = [...document.getElementsByTagName("h1")].find((el) => el.getBoundingClientRect().x > 0);
++                window.customTrackerHeading.style.padding = "0";
++            }
++            const h1Elements = document.getElementsByTagName("h1");
++            const numBusesWithGPS = Object.values(k.current).reduce((count, vehicle) => {
++                const vehiclePosition = vehicle.positions[0].position;
++                return !(
++                    vehiclePosition.lat >= 49.781 &&
++                    vehiclePosition.lat <= 49.83 &&
++                    vehiclePosition.lng >= -97.32 &&
++                    vehiclePosition.lng <= -97.2725
++                ) ? count + 1 : count;
++            }, 0);
++            window.customTrackerHeading.textContent = `${Object.keys(k.current).length} bus${Object.keys(k.current).length === 1 ? "" : "es"}, ${numBusesWithGPS} GPS`;
+         }
+         ), [h, y, U, A, R, w, k]);
+         return {
+@@ -245707,15 +245837,65 @@
          l.useMemo)(( () => !p || v), [p, v]);
          let Q = (0,
          l.useMemo)(( () => (0,
@@ -291,8 +314,19 @@
 +        }), [_, j]);
          const z = (0,
          l.useCallback)(( ({data: t}) => {
++            const vehicleUpdates = t?.data?.vehicleUpdates;
++            if (vehicleUpdates?.vehicle?.key && vehicleUpdates?.path?.length === 0) {
++                vehicleUpdates.path = [{
++                    ts: new Date().toISOString(),
++                    x: 49.83 - Math.floor(vehicleUpdates.vehicle.key / 20) * 0.001,
++                    y: -97.32 + vehicleUpdates.vehicle.key % 20 * 0.0025,
++                    __typename: "TimedPoint"
++                }];
++            }
              const {data: s, error: u} = t || {};
-@@ -245975,10 +246129,11 @@
+             null != s && s.vehicleUpdates && !u ? (q(null),
+             D(null),
+@@ -245975,10 +246155,11 @@
          }
          ), [N, T, P, f, W, K, s])
            , Y = (0,
@@ -305,7 +339,18 @@
              y.current[e.key].updatedAt = n,
              y.current[e.key].deviation = s,
              null != t && t.key && null != l && l.key ? (y.current[e.key].busMarkerData = c.current[l.key],
-@@ -246989,7 +247144,7 @@
+@@ -246008,10 +246189,6 @@
+             const {vehicle: t, trip: l, route: s, path: h, ts: f} = e || {};
+             if (null == t || !t.key || 0 === (h || []).length || !f || !c.current.hasOwnProperty(null == s ? void 0 : s.key))
+                 return;
+-            if ((0,
+-            u.default)().diff((0,
+-            u.default)(f), "seconds", !0) > n.BUS_TIMESTAMP_VALID_THRESHOLD_SECONDS)
+-                return;
+             if (k) {
+                 const e = (o || []).find(( ({id: e}) => e === t.key));
+                 if (!e || e.tripId !== (null == l ? void 0 : l.key))
+@@ -246989,7 +247166,7 @@
            , $ = (0,
          u.useQuery)(["stopRoutes", _, Z, L], ( () => (0,
          n.routes)(_, K && L === T.schedule ? {
@@ -314,7 +359,7 @@
          } : {})), {
              enabled: !!z.data
          })
-@@ -247624,7 +247779,7 @@
+@@ -247624,7 +247801,7 @@
                  prefix: "far",
                  iconName: "clock",
                  text: p("trips:schedule:eta", {
@@ -323,7 +368,7 @@
                  }),
                  style: u
              })]
-@@ -249095,7 +249250,7 @@
+@@ -249095,7 +249272,7 @@
          (0,
          s.useEffect)(( () => {
              const {isLoading: e, isError: t, isFetching: n, isSuccess: o, data: i, error: s} = qe;
@@ -332,7 +377,7 @@
              Te(i.nextTripId),
              U.current = U.current + 1,
              we(!0))
-@@ -355184,8 +355339,8 @@
+@@ -355184,8 +355361,8 @@
        , V = r(d[35])
        , z = r(d[36])
        , W = r(d[37]);
@@ -343,7 +388,7 @@
      (0,
      f.schedule)(e, t))
        , K = () => {
-@@ -355217,14 +355372,14 @@
+@@ -355217,14 +355394,14 @@
          S.useInfiniteQuery)(["stopSchedule", n, w], ( ({pageParam: e}) => q(n, {
              start_time: e
          })), {
@@ -360,7 +405,7 @@
              }
              )(e, 0, C)
          })
-@@ -355375,7 +355530,11 @@
+@@ -355375,7 +355552,11 @@
                      setForceOpenTimepicker: L,
                      endOfBookingReachedError: h,
                      isInitialBusSyncRef: l
@@ -373,7 +418,7 @@
              })
          }
      }
-@@ -355625,7 +355784,7 @@
+@@ -355625,7 +355806,7 @@
          const u = 0 === t ? J : s.default.Fragment;
          let p = () => (0,
          W.jsx)(W.Fragment, {});
@@ -382,7 +427,7 @@
              (i ? (0,
              o.default)() : (0,
              o.default)(c)).add(1, "hour").isSameOrBefore((0,
-@@ -356548,9 +356707,9 @@
+@@ -356548,9 +356729,9 @@
          T.jsx)(o.TimeFilterChip, {
              alignment: s.MODAL_ALIGNMENT.topLeft,
              timeFilterNow: p,
@@ -394,7 +439,7 @@
              setTimeFilterToNow: y,
              a11yLabel: N,
              closeA11yLabel: x,
-@@ -361362,7 +361521,7 @@
+@@ -361362,7 +361543,7 @@
          var o = Math.asin(1 / (a = Math.max(1, a))) * (c /= n);
          function s(n) {
              return a * (0,
@@ -403,7 +448,7 @@
          }
          return s.amplitude = function(t) {
              return u(t, c * n)
-@@ -414109,7 +414268,7 @@
+@@ -414109,7 +414290,7 @@
                      children: e
                  })
              }
@@ -412,7 +457,7 @@
                  var de, ue;
                  let t;
                  q.length > 0 && (t = q[q.length - 1]);
-@@ -414326,7 +414485,7 @@
+@@ -414326,7 +414507,7 @@
          x.useLocaleSetting)()
            , {tripDestination: I, upcomingScheduledStops: j} = (0,
          t.useContext)(u.OnTheGoTripScheduleContext)
@@ -421,7 +466,7 @@
            , P = o.default.create({
              textMuted: {
                  fontSize: 16,
-@@ -414346,7 +414505,7 @@
+@@ -414346,7 +414527,7 @@
              time: (0,
              c.scheduleDepartureTime)(C.estimatedTime, {
                  locale: b
@@ -430,7 +475,7 @@
          });
          if (h) {
              const e = j.findIndex((e => e.stopId === C.stopId));
-@@ -414358,10 +414517,15 @@
+@@ -414358,10 +414539,15 @@
                  M = "".concat(M, " (").concat(t, ")")
              }
          }
