@@ -1,5 +1,5 @@
---- index-js-orig/index-orig.js	2026-05-29 00:11:44.840338406 -0500
-+++ index-js-orig/index-patched.js	2026-06-14 21:07:50.563072542 -0500
+--- index-js-orig/index-orig.js	2026-06-15 10:46:26.391982515 -0500
++++ index-js-orig/index-patched.js	2026-06-15 10:46:39.979191204 -0500
 @@ -1,3 +1,46 @@
 +window.customTrackerSidebarButtonStyle = "display:inline-block; font-size: 20px; font-family: sans-serif; padding: 5px; margin: 5px; font-weight: bold; color: blue; background-color: white; border-radius: 5px;";
 +function calculateCustomStopSchedule(orig) {
@@ -132,7 +132,7 @@
                                  d.end_time_ms = n.now(),
                                  d.status_code = e.status,
                                  d.response_content_type = e.headers.get("Content-Type");
-@@ -161741,7 +161857,7 @@
+@@ -161744,7 +161860,7 @@
          u.default)().add(15, "minutes");
          d.locale(o),
          d.isBefore(f) ? c.visual = (0,
@@ -141,7 +141,7 @@
          u.default)()) ? c.visual = (0,
          l.t)("common:time.due") : n && d.isBefore(p) ? c.visual = d.toNow(!0) : c.visual = d.format(s.DATE_TIME_FORMATS[o][a].time);
          let y = new RegExp((0,
-@@ -161749,7 +161865,7 @@
+@@ -161752,7 +161868,7 @@
            , b = new RegExp((0,
          l.t)("common:time.due"),"gi")
            , v = new RegExp((0,
@@ -150,7 +150,7 @@
          return c.visual.match(y) ? c.a11y = (0,
          l.t)("stops:schedules.departs_in", {
              time: c.visual
-@@ -240412,14 +240528,22 @@
+@@ -240419,14 +240535,22 @@
              const c = "\n      background-color: ".concat(n || "#ffffff", ";\n      border-color: ").concat(A || "#d9d9d9", ";\n      border-width: 1px;\n      border-style: solid;\n      border-radius: 4px;\n    ");
              return "\n      <div style=\"font-weight: 700;\n                  font-family: 'Source Sans 3', 'sans-serif';\n                  text-align: center;\n                  color: ".concat(e || "#000000", ";\n                  padding: ").concat(o ? 0 : 5, "px;\n                  font-size: 15px;\n                  min-width: ").concat(o ? 15 : 18, "px;\n                  min-height: ").concat(o ? 15 : 18, "px;\n                  line-height: ").concat(o ? 16 : 18, "px;\n                  ").concat(o ? "" : c, '"\n      >\n        ').concat(t, "\n      </div>\n    ")
          }
@@ -175,7 +175,7 @@
                  backgroundColor: p.badgeStyle.backgroundColor,
                  borderColor: p.badgeStyle.color,
                  color: p.badgeStyle.color,
-@@ -240451,11 +240575,19 @@
+@@ -240458,11 +240582,19 @@
                  markerHTML: f
              }
          }
@@ -197,7 +197,7 @@
                  route: u,
                  variant: x
              }) : '\n        <div style="font-size: 13px; font-weight: bold; margin: 0 auto 0 auto; text-align: center;">\n          '.concat((0,
-@@ -240470,11 +240602,12 @@
+@@ -240477,11 +240609,12 @@
              }
              )(), "\n            \n            \x3c!--  Bus features section  --\x3e\n            ").concat(this._busMarkerFeaturesHTMLString(Object.assign({}, w, {
                  fillColor: o.textPrimary
@@ -212,7 +212,7 @@
              }), "\n            ").concat(h ? "" : this._offlineWarningSVGDiv({
                  ColorCodes: o,
                  marginTop: "0px",
-@@ -240508,10 +240641,10 @@
+@@ -240515,10 +240648,10 @@
              o += "bus-".concat(t),
              o
          }
@@ -225,7 +225,7 @@
          }
          static _busMarkerRouteHTMLString({route: t, variant: n}) {
              return '\n      <div>\n        <div>\n          <div style="display: flex; flex-direction: row; flex: 1; flex-wrap: wrap; justify-content: center">\n            <div style="display: flex; flex-direction: row; flex: 0; margin: 0 8px 0 0; padding: 0; max-height: 18px;">\n              '.concat(this.createRouteMarkerIcon({
-@@ -240548,7 +240681,7 @@
+@@ -240555,7 +240688,7 @@
          static _busMarkerFeaturesHTMLString({bikeRack: t, wheelchairSecurement: n, fillColor: A}) {
              return t || n ? "\n      <div>\n        ".concat(t ? this._bikeSVG(A) : "", "\n        ").concat(n ? this._wheelchairSecurementSVG(A) : "", "\n      </div>\n    ") : ""
          }
@@ -234,7 +234,7 @@
              let l, h = Math.abs((0,
              s.default)().diff((0,
              s.default)(t), "minutes", !0));
-@@ -240562,10 +240695,11 @@
+@@ -240569,10 +240702,11 @@
                      time_in_min: t
                  })
              } else {
@@ -249,7 +249,7 @@
              }
              return '\n      <p style="font-size: 11px; margin: 0; padding: 0 4px 0 0; flex: 1 1 auto; min-width: 0; text-align: left;">'.concat(l, "</p>\n    ")
          }
-@@ -244367,7 +244501,7 @@
+@@ -244374,7 +244508,7 @@
          null != o && (b.push(o),
          _.live = o),
          null != p && (b.push(p),
@@ -258,7 +258,7 @@
          (0,
          t.apiRequest)("".concat(c, "/schedule?").concat((0,
          t.buildQueryUrl)(_)), {}, b)
-@@ -245587,7 +245721,7 @@
+@@ -245594,7 +245728,7 @@
              return !e.inService && t.expectedBus ? (t.busFeatures = t.expectedBus.busFeatures || {},
              t.locale = L,
              s = n.MarkersService.createSelectedBusMarker(t)) : v ? e.tripId !== v.id ? (s = n.MarkersService.createBusMarker(t),
@@ -267,7 +267,7 @@
              t.variant = v.variant,
              t.busFeatures = (null == v ? void 0 : v.busFeatures) || {},
              t.locale = L,
-@@ -245638,17 +245772,51 @@
+@@ -245645,17 +245779,51 @@
                      busId: s,
                      tripId: c.tripId,
                      routeId: c.routeId,
@@ -320,7 +320,7 @@
          }
          ), [h, y, U, A, R, w, k]);
          return {
-@@ -245707,15 +245875,71 @@
+@@ -245714,15 +245882,71 @@
          l.useMemo)(( () => !p || v), [p, v]);
          let Q = (0,
          l.useMemo)(( () => (0,
@@ -398,7 +398,7 @@
              const {data: s, error: u} = t || {};
              null != s && s.vehicleUpdates && !u ? (q(null),
              D(null),
-@@ -245975,10 +246199,11 @@
+@@ -245982,10 +246206,11 @@
          }
          ), [N, T, P, f, W, K, s])
            , Y = (0,
@@ -411,7 +411,7 @@
              y.current[e.key].updatedAt = n,
              y.current[e.key].deviation = s,
              null != t && t.key && null != l && l.key ? (y.current[e.key].busMarkerData = c.current[l.key],
-@@ -246008,10 +246233,6 @@
+@@ -246015,10 +246240,6 @@
              const {vehicle: t, trip: l, route: s, path: h, ts: f} = e || {};
              if (null == t || !t.key || 0 === (h || []).length || !f || !c.current.hasOwnProperty(null == s ? void 0 : s.key))
                  return;
@@ -422,7 +422,7 @@
              if (k) {
                  const e = (o || []).find(( ({id: e}) => e === t.key));
                  if (!e || e.tripId !== (null == l ? void 0 : l.key))
-@@ -246989,7 +247210,7 @@
+@@ -246996,7 +247217,7 @@
            , $ = (0,
          u.useQuery)(["stopRoutes", _, Z, L], ( () => (0,
          n.routes)(_, K && L === T.schedule ? {
@@ -431,7 +431,7 @@
          } : {})), {
              enabled: !!z.data
          })
-@@ -247624,7 +247845,7 @@
+@@ -247631,7 +247852,7 @@
                  prefix: "far",
                  iconName: "clock",
                  text: p("trips:schedule:eta", {
@@ -440,7 +440,7 @@
                  }),
                  style: u
              })]
-@@ -249095,7 +249316,7 @@
+@@ -249102,7 +249323,7 @@
          (0,
          s.useEffect)(( () => {
              const {isLoading: e, isError: t, isFetching: n, isSuccess: o, data: i, error: s} = qe;
@@ -449,7 +449,7 @@
              Te(i.nextTripId),
              U.current = U.current + 1,
              we(!0))
-@@ -355184,8 +355405,8 @@
+@@ -355271,8 +355492,8 @@
        , V = r(d[35])
        , z = r(d[36])
        , W = r(d[37]);
@@ -460,7 +460,7 @@
      (0,
      f.schedule)(e, t))
        , K = () => {
-@@ -355217,14 +355438,14 @@
+@@ -355304,14 +355525,14 @@
          S.useInfiniteQuery)(["stopSchedule", n, w], ( ({pageParam: e}) => q(n, {
              start_time: e
          })), {
@@ -477,7 +477,7 @@
              }
              )(e, 0, C)
          })
-@@ -355375,7 +355596,11 @@
+@@ -355462,7 +355683,11 @@
                      setForceOpenTimepicker: L,
                      endOfBookingReachedError: h,
                      isInitialBusSyncRef: l
@@ -490,7 +490,7 @@
              })
          }
      }
-@@ -355625,7 +355850,7 @@
+@@ -355712,7 +355937,7 @@
          const u = 0 === t ? J : s.default.Fragment;
          let p = () => (0,
          W.jsx)(W.Fragment, {});
@@ -499,7 +499,7 @@
              (i ? (0,
              o.default)() : (0,
              o.default)(c)).add(1, "hour").isSameOrBefore((0,
-@@ -356548,9 +356773,9 @@
+@@ -356635,9 +356860,9 @@
          T.jsx)(o.TimeFilterChip, {
              alignment: s.MODAL_ALIGNMENT.topLeft,
              timeFilterNow: p,
@@ -511,7 +511,7 @@
              setTimeFilterToNow: y,
              a11yLabel: N,
              closeA11yLabel: x,
-@@ -361362,7 +361587,7 @@
+@@ -361449,7 +361674,7 @@
          var o = Math.asin(1 / (a = Math.max(1, a))) * (c /= n);
          function s(n) {
              return a * (0,
@@ -520,7 +520,7 @@
          }
          return s.amplitude = function(t) {
              return u(t, c * n)
-@@ -414109,7 +414334,7 @@
+@@ -414196,7 +414421,7 @@
                      children: e
                  })
              }
@@ -529,7 +529,7 @@
                  var de, ue;
                  let t;
                  q.length > 0 && (t = q[q.length - 1]);
-@@ -414326,7 +414551,7 @@
+@@ -414413,7 +414638,7 @@
          x.useLocaleSetting)()
            , {tripDestination: I, upcomingScheduledStops: j} = (0,
          t.useContext)(u.OnTheGoTripScheduleContext)
@@ -538,7 +538,7 @@
            , P = o.default.create({
              textMuted: {
                  fontSize: 16,
-@@ -414346,7 +414571,7 @@
+@@ -414433,7 +414658,7 @@
              time: (0,
              c.scheduleDepartureTime)(C.estimatedTime, {
                  locale: b
@@ -547,7 +547,7 @@
          });
          if (h) {
              const e = j.findIndex((e => e.stopId === C.stopId));
-@@ -414358,10 +414583,15 @@
+@@ -414445,10 +414670,15 @@
                  M = "".concat(M, " (").concat(t, ")")
              }
          }
