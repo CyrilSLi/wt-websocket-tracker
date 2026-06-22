@@ -1,8 +1,9 @@
+.dev
+*.js
+
 index-js-orig/*
 !index-js-orig/index.js.patch
+!index-js-orig/all_in_one_patch.js
 
 index-js-rebuilt/*
 !index-js-rebuilt/.gitkeep
-
-.dev
-*.js
