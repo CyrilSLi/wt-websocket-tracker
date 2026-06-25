@@ -12,9 +12,9 @@ async function onResponse(context, request, response) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Winnipeg Transit</title>
-    <script src="https://cdn.jsdelivr.net/npm/localforage@1/dist/localforage.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/diff@9/dist/diff.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chromium-formatters@1/dist/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/localforage@1.10.0/dist/localforage.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/diff@9.0.0/dist/diff.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chromium-formatters@1.0/dist/main.min.js"></script>
 </head>
 <body>
     <div style="margin: 1em">

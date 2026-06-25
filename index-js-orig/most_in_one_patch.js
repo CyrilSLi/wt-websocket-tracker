@@ -11,15 +11,15 @@
 
     try {
         updateStatus("Loading dependencies...");
-        const { default: localforage } = await import("https://cdn.jsdelivr.net/npm/localforage@1/+esm");
+        const { default: localforage } = await import("https://cdn.jsdelivr.net/npm/localforage@1.10.0/+esm");
         const appScriptEl = document.querySelector('script[src*="_expo/static/js/web"]');
         const appScriptSrc = appScriptEl.getAttribute("src") + "?";
 
         let appScript;
         if ((await localforage.getItem("appScriptSrc")) !== appScriptSrc) { // Not cached or cache version is outdated
 
-            const Diff = await import("https://cdn.jsdelivr.net/npm/diff@9/+esm");
-            const { default: chromiumFormatter } = await import("https://cdn.jsdelivr.net/npm/chromium-formatters@1/dist/main.esm.min.js");
+            const Diff = await import("https://cdn.jsdelivr.net/npm/diff@9.0.0/+esm");
+            const { default: chromiumFormatter } = await import("https://cdn.jsdelivr.net/npm/chromium-formatters@1.0/dist/main.esm.min.js");
 
             updateStatus("Fetching patch...");
             const patch = await (await fetch("https://raw.githubusercontent.com/CyrilSLi/wt-websocket-tracker/main/index-js-orig/index.js.patch")).text();
