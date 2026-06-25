@@ -31,13 +31,6 @@ apply_patch() {
 
     python scripts/generate_index_js_patch.py
     echo "index-js-patch.js generated successfully."
-
-    if command -v terser >/dev/null 2>&1; then
-        MINIFIED_FILE="${PATCHED_FILE/%.js/.min.js}"
-        echo "Minifying patched file..."
-        terser "$PATCHED_FILE" --compress --mangle --output "$MINIFIED_FILE"
-        echo "Minified file created: $MINIFIED_FILE"
-    fi
 }
 
 verify_patch() {
