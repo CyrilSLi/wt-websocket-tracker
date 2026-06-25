@@ -17,8 +17,10 @@ async function onResponse(context, request, response) {
     <script src="https://cdn.jsdelivr.net/npm/chromium-formatters@1/dist/main.min.js"></script>
 </head>
 <body>
-    <h1 id="status">Loading...</h1>
-    <pre id="errors"></pre>
+    <div style="margin: 1em">
+        <h1 id="status">Loading...</h1>
+        <p id="errors" style="white-space: pre-wrap; word-break: break-word;"></p>
+    </div>
     <script>
         (async () => {
             try {
@@ -30,7 +32,7 @@ async function onResponse(context, request, response) {
                 const appSrc = new URL(window.location.href);
                 appSrc.searchParams.set("custom-script-orig", "1");
                 const appHTML = new DOMParser().parseFromString(await (await fetch(appSrc)).text(), "text/html").documentElement;
-                const appScriptEl = appHTML.querySelector('script[src^="/_expo/static/js/web/"]');
+                const appScriptEl = appHTML.querySelector('script[src*="_expo/static/js/web"]');
                 const appScriptSrc = appScriptEl.getAttribute("src");
 
                 let appScript = await localforage.getItem("patchedAppScript");
@@ -58,7 +60,7 @@ async function onResponse(context, request, response) {
                 patchedScriptEl.textContent = appScript;
                 appScriptEl.replaceWith(patchedScriptEl);
             } catch (e) {
-                document.getElementById("status").textContent = "Error:";
+                updateStatus("Error:");
                 document.getElementById("errors").textContent = e.stack || e;
             }
         })();
