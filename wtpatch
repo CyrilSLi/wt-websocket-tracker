@@ -35,7 +35,7 @@ apply_patch() {
     if command -v terser >/dev/null 2>&1; then
         MINIFIED_FILE="${PATCHED_FILE/%.js/.min.js}"
         echo "Minifying patched file..."
-        terser "$PATCHED_FILE" --compress --output "$MINIFIED_FILE"
+        terser "$PATCHED_FILE" --compress --mangle --output "$MINIFIED_FILE"
         echo "Minified file created: $MINIFIED_FILE"
     fi
 }

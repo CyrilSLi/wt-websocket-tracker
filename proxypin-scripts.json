@@ -1,0 +1,1 @@
+[{"enabled":true,"name":"WT Custom Tracker","url":"https://winnipegtransit.com/_expo/static/js/web/index-*.js","script":"async function onRequest(t,e){return e}async function onResponse(t,e,n){return'script'===e.headers?.['Sec-Fetch-Dest']&&(n.body=await(await fetch('https://raw.githubusercontent.com/CyrilSLi/wt-custom-tracker/refs/heads/main/index-js-patch.js')).text()),n}"}]
