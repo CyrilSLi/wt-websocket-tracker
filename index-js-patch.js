@@ -1,6 +1,6 @@
 (async () => {
     document.body.insertAdjacentHTML("afterbegin", `
-        <div id="custom-script-loader" style="width: 100vw; box-sizing: border-box; padding: 20px; font-family: sans-serif">
+        <div id="custom-script-loader" style="width: 100vw; box-sizing: border-box; padding: 20px; font-family: sans-serif; background-color: white; color: black;">
             <h1 id="custom-script-status" style="margin: 0; margin-bottom: 10px; font-size: 28px;">Loading...</h1>
             <pre id="custom-script-error" style="overflow: scroll; margin: 0; font-size: 20px;"></pre>
         </div>
@@ -29,6 +29,13 @@
         const appScriptEl = document.querySelector('script[src*="_expo/static/js/web"]');
         let appScript;
 
+        function replaceScript(newScript) {
+            const newScriptEl = document.createElement("script");
+            newScriptEl[newScript.startsWith("http") ? "src" : "textContent"] = newScript;
+            document.getElementById("custom-script-loader").remove();
+            appScriptEl.replaceWith(newScriptEl);
+        }
+
         const appVersion = appScriptEl.getAttribute("src") + "?";
         const patchVersion = "/_expo/static/js/web/index-a259be251ee9375b73a5c842007eed4e.js?";
         const cachedVersion = await localforage.getItem("appVersion");
@@ -36,10 +43,7 @@
         if (appVersion !== patchVersion) {
             if (!cachedVersion) { // No cached patch and patch is outdated
                 alert("Patch version outdated. Custom features will be disabled until the developer updates the patch.");
-                const origScriptEl = document.createElement("script");
-                origScriptEl.src = appVersion;
-                document.getElementById("custom-script-loader").remove();
-                appScriptEl.replaceWith(origScriptEl);
+                replaceScript(appVersion);
                 return;
             } else { // Cached patch exists but is outdated
                 updateStatus("Loading app...");
@@ -69,13 +73,10 @@
                 await localforage.setItem("appVersion", appVersion);
                 await localforage.setItem("patchedApp", appScript);
             }
-        }
 
+        }
         updateStatus("Loading app...");
-        const patchedScriptEl = document.createElement("script");
-        patchedScriptEl.textContent = appScript;
-        document.getElementById("custom-script-loader").remove();
-        appScriptEl.replaceWith(patchedScriptEl);
+        replaceScript(appScript);
 
     } catch (e) {
         updateStatus("Error:");
