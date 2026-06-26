@@ -31,9 +31,9 @@
         const appScriptEl = document.querySelector('script[src*="_expo/static/js/web"]');
         let appScript;
 
-        function replaceScript(newScript) {
+        function replaceScript(newScript, isUrl = false) {
             const newScriptEl = document.createElement("script");
-            newScriptEl[newScript.startsWith("http") ? "src" : "textContent"] = newScript;
+            newScriptEl[isUrl ? "src" : "textContent"] = newScript;
             document.getElementById("custom-script-loader").remove();
             appScriptEl.replaceWith(newScriptEl);
         }
@@ -45,7 +45,7 @@
         if (appVersion !== patchVersion) {
             if (!cachedVersion) { // No cached patch and patch is outdated
                 alert("Patch version outdated. Custom features will be disabled until the developer updates the patch.");
-                replaceScript(appVersion);
+                replaceScript(appVersion, isUrl = true);
                 return;
             } else { // Cached patch exists but is outdated
                 updateStatus("Loading app...");
