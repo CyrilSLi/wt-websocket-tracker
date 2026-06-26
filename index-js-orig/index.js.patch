@@ -1,5 +1,5 @@
 --- index-js-orig/index-orig.js	2026-06-18 10:39:26.796218654 -0500
-+++ index-js-orig/index-patched.js	2026-06-17 15:44:03.150606824 -0500
++++ index-js-orig/index-patched.js	2026-06-26 07:07:35.662617569 -0500
 @@ -1,3 +1,46 @@
 +window.customTrackerSidebarButtonStyle = "display:inline-block; font-size: 20px; font-family: sans-serif; padding: 5px; margin: 5px; font-weight: bold; color: blue; background-color: white; border-radius: 5px;";
 +function calculateCustomStopSchedule(orig) {
@@ -503,6 +503,15 @@
                  }),
                  style: u
              })]
+@@ -248200,7 +248423,7 @@
+                     focusable: !0,
+                     accessibilityLabel: v
+                 },
+-                title: e.name,
++                title: `${e.name} (${e.run.replaceAll("-", "\u2011")}${e.busId ? `,\u00A0${e.busId}` : ""})`,
+                 left: () => (0,
+                 y.jsx)(c.default, {
+                     importantForAccessibility: "no-hide-descendants",
 @@ -249105,7 +249328,7 @@
          (0,
          s.useEffect)(( () => {
@@ -571,6 +580,15 @@
              (i ? (0,
              o.default)() : (0,
              o.default)(c)).add(1, "hour").isSameOrBefore((0,
+@@ -355767,7 +355994,7 @@
+                 accessibilityHint: se,
+                 children: (0,
+                 B.jsx)(u.AccessibleCardTitle, {
+-                    title: e.route.name || e.route.id,
++                    title: `Run ${e.run}${e.busId ? `, Bus ${e.busId}` : ""}`,
+                     subtitle: e.name,
+                     titleNumberOfLines: 2,
+                     subtitleNumberOfLines: 1,
 @@ -356493,9 +356720,9 @@
          T.jsx)(o.TimeFilterChip, {
              alignment: s.MODAL_ALIGNMENT.topLeft,
