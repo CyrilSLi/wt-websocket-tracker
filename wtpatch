@@ -2,8 +2,14 @@
 set -euo pipefail
 
 create_patch() {
+    python scripts/update_hardcoded_variables.py
+    echo "Hardcoded variables updated successfully."
+
     diff -Naur index-js-orig/index-orig.js index-js-orig/index-patched.js > index-js-orig/index.js.patch || true
     echo "Created patch file: index-js-orig/index.js.patch"
+
+    python scripts/generate_index_js_patch.py
+    echo "index-js-patch.js generated successfully."
 }
 
 apply_patch() {
@@ -28,9 +34,6 @@ apply_patch() {
         echo "ERROR: Failed to apply patch, check $PATCHED_FILE.rej for details."
         exit 1
     fi
-
-    python scripts/generate_index_js_patch.py
-    echo "index-js-patch.js generated successfully."
 }
 
 verify_patch() {
